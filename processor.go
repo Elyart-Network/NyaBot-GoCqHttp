@@ -23,8 +23,8 @@ func worker(connect *websocket.Conn) {
 		}
 		switch messageType {
 		case websocket.TextMessage:
-			decode(string(messageData))
 			go log.Println(string(messageData))
+			decode(string(messageData))
 		default:
 		}
 	}
