@@ -1,6 +1,6 @@
 package General
 
-// GetImage Endpoint get_image
-type GetImage struct {
+// GetImageData Endpoint get_image
+type GetImageData struct {
 	File string `json:"file"`
 }

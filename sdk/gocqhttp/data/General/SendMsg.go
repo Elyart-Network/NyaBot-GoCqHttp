@@ -1,7 +1,7 @@
 package General
 
-// SendMsg Endpoint send_msg
-type SendMsg struct {
+// SendMsgData Endpoint send_msg
+type SendMsgData struct {
 	MessageType string `json:"message_type"`
 	UserId      int    `json:"user_id"`
 	GroupId     int    `json:"group_id"`

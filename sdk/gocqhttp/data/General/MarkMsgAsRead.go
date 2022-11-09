@@ -1,6 +1,6 @@
 package General
 
-// garkMsgAsRead Endpoint mark_msg_as_read
-type MarkMsgAsRead struct {
+// MarkMsgAsReadData Endpoint mark_msg_as_read
+type MarkMsgAsReadData struct {
 	MessageId int `json:"message_id"`
 }

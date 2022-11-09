@@ -1,6 +1,6 @@
 package General
 
-// DeleteMsg Endpoint delete_msg
-type DeleteMsg struct {
+// DeleteMsgData Endpoint delete_msg
+type DeleteMsgData struct {
 	MessageId int `json:"message_id"`
 }

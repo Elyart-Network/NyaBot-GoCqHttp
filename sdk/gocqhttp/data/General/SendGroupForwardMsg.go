@@ -1,7 +1,7 @@
 package General
 
-// SendGroupForwardMsg Endpoint send_group_forward_msg
-type SendGroupForwardMsg struct {
+// SendGroupForwardMsgData Endpoint send_group_forward_msg
+type SendGroupForwardMsgData struct {
 	GroupId  int    `json:"group_id"`
 	Messages string `json:"messages"`
 }
