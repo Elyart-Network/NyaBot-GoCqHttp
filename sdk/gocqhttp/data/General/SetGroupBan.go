@@ -1,7 +1,7 @@
 package General
 
-// SetGroupBan Endpoint set_group_ban
-type SetGroupBan struct {
+// setGroupBan Endpoint set_group_ban
+type setGroupBan struct {
 	GroupId  int `json:"group_id"`
 	UserId   int `json:"user_id"`
 	Duration int `json:"duration"`

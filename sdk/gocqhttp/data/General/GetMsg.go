@@ -1,6 +1,6 @@
 package General
 
-// GetMsg Endpoint get_msg
-type GetMsg struct {
+// getMsg Endpoint get_msg
+type getMsg struct {
 	MessageId int `json:"message_id"`
 }
