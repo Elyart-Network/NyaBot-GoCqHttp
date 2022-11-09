@@ -1,6 +1,6 @@
-package Format
+package data
 
-type WsSend struct {
+type WsSendData struct {
 	Action string   `json:"action"`
 	Params struct{} `json:"params"`
 	Echo   string   `json:":echo"`

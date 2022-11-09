@@ -1,18 +1,10 @@
 package main
 
 import (
-	"encoding/json"
+	"NyaBot-GoCqHttp/actions/Command"
 	"github.com/gorilla/websocket"
 	"log"
 )
-
-func decode(message string) {
-	reading := make(map[string]interface{})
-	err := json.Unmarshal([]byte(message), &reading)
-	if err != nil {
-		log.Println(err)
-	}
-}
 
 func worker(connect *websocket.Conn) {
 	for {
@@ -23,8 +15,8 @@ func worker(connect *websocket.Conn) {
 		}
 		switch messageType {
 		case websocket.TextMessage:
-			go log.Println(string(messageData))
-			decode(string(messageData))
+			log.Println(string(messageData))
+			go Command.Loader()
 		default:
 		}
 	}
