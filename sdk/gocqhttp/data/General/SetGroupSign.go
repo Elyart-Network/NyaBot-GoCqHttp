@@ -1,6 +1,6 @@
 package General
 
-// setGroupSign Endpoint set_group_sign
-type setGroupSign struct {
+// SetGroupSign Endpoint set_group_sign
+type SetGroupSign struct {
 	GroupId int `json:"group_id"`
 }
