@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-func loader(connect *websocket.Conn) {
-
-}
-
 func main() {
 	dialer := websocket.DefaultDialer
 	connect, _, err := dialer.Dial("ws://127.0.0.1:4000/", nil)
@@ -19,8 +15,6 @@ func main() {
 		return
 	}
 	defer connect.Close()
-	go loader(connect)
-
 	for {
 		messageType, messageData, err := connect.ReadMessage()
 		if nil != err {
@@ -30,9 +24,6 @@ func main() {
 		switch messageType {
 		case websocket.TextMessage:
 			fmt.Println(string(messageData))
-		//case websocket.CloseMessage:
-		//case websocket.PingMessage:
-		//case websocket.PongMessage:
 		default:
 		}
 	}
