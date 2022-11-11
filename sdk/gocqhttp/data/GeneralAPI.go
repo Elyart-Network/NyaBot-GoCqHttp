@@ -116,8 +116,8 @@ type SetGroupSpecialTitleData struct {
 	Duration     int    `json:"duration"`
 }
 
-// SetGroupSignData Endpoint set_group_sign
-type SetGroupSignData struct {
+// SendGroupSignData Endpoint set_group_sign
+type SendGroupSignData struct {
 	GroupId int `json:"group_id"`
 }
 
