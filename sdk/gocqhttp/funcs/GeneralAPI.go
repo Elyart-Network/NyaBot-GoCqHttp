@@ -15,3 +15,13 @@ func SendPrivateMsg(c *websocket.Conn, UserId int, GroupId int, Message string, 
 	}
 	WsSend(c, "send_private_msg", Data)
 }
+
+// SendGroupMsg Endpoint send_group_msg
+func SendGroupMsg(c *websocket.Conn, GroupId int, Message string, AutoEscape bool) {
+	Data := data.SendGroupMsgData{
+		GroupId:    GroupId,
+		Message:    Message,
+		AutoEscape: AutoEscape,
+	}
+	WsSend(c, "send_group_msg", Data)
+}

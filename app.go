@@ -25,7 +25,7 @@ func main() {
 		switch messageType {
 		case websocket.TextMessage:
 			log.Println(string(messageData))
-			go Command.Loader()
+			go Command.Loader(connect, messageData)
 		default:
 		}
 	}
