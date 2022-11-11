@@ -17,8 +17,8 @@ type SendGroupMsgData struct {
 
 // SendGroupForwardMsgData Endpoint send_group_forward_msg
 type SendGroupForwardMsgData struct {
-	GroupId  int    `json:"group_id"`
-	Messages string `json:"messages"`
+	GroupId  int         `json:"group_id"`
+	Messages interface{} `json:"messages"`
 }
 
 // SendMsgData Endpoint send_msg
@@ -42,7 +42,7 @@ type GetMsgData struct {
 
 // GetForwardMsgData Endpoint get_forward_msg
 type GetForwardMsgData struct {
-	MessageID string `json:"message_id"`
+	MessageId string `json:"message_id"`
 }
 
 // GetImageData Endpoint get_image
@@ -131,15 +131,22 @@ type SetFriendAddRequestData struct {
 // SetGroupAddRequestData Endpoint set_group_add_request
 type SetGroupAddRequestData struct {
 	Flag    string `json:"flag"`
-	Type    string `json:"type"`
+	SubType string `json:"sub_type"`
 	Approve bool   `json:"approve"`
 	Reason  string `json:"reason"`
 }
 
 // GetLoginInfoData Endpoint get_login_info
 type GetLoginInfoData struct {
-	UserID   int    `json:"user_id"`
+	UserId   int    `json:"user_id"`
 	Nickname string `json:"nickname"`
+}
+
+// QidianGetAccountInfoData Endpoint qidian_get_account_info
+type QidianGetAccountInfoData struct {
+	MasterId   int    `json:"master_id"`
+	ExtName    string `json:"ext_name"`
+	CreateTime int    `json:"create_time"`
 }
 
 // SetQQProfileData Endpoint set_qq_profile
@@ -159,21 +166,21 @@ type GetStrangerInfoData struct {
 
 // GetFriendListData Endpoint get_friend_list
 type GetFriendListData struct {
-	UserID   int    `json:"user_id"`
+	UserId   int    `json:"user_id"`
 	Nickname string `json:"nickname"`
 	Remark   string `json:"remark"`
 }
 
 // GetUnidirectionalFriendListData Endpoint get_unidirectional_friend_list
 type GetUnidirectionalFriendListData struct {
-	UserID   int    `json:"user_id"`
+	UserId   int    `json:"user_id"`
 	Nickname string `json:"nickname"`
 	Source   string `json:"source"`
 }
 
 // DeleteFriendData Endpoint delete_friend
 type DeleteFriendData struct {
-	FriendID int `json:"friend_id"`
+	FriendId int `json:"friend_id"`
 }
 
 // GetGroupInfoData Endpoint get_group_info
@@ -251,39 +258,45 @@ type GetGroupRootFilesData struct {
 // GetGroupFilesByFolderData Endpoint get_group_files_by_folder
 type GetGroupFilesByFolderData struct {
 	GroupId  int    `json:"group_id"`
-	FolderID string `json:"folder_id"`
+	FolderId string `json:"folder_id"`
 }
 
 // CreateGroupFileFolderData Endpoint create_group_file_folder
 type CreateGroupFileFolderData struct {
 	GroupId  int    `json:"group_id"`
 	Name     string `json:"name"`
-	ParentID string `json:"parent_id"`
+	ParentId string `json:"parent_id"`
 }
 
 // DeleteGroupFolderData Endpoint delete_group_folder
 type DeleteGroupFolderData struct {
 	GroupId  int    `json:"group_id"`
-	FolderID string `json:"folder_id"`
+	FolderId string `json:"folder_id"`
 }
 
 // DeleteGroupFileData Endpoint delete_group_file
 type DeleteGroupFileData struct {
 	GroupId int    `json:"group_id"`
-	FileID  string `json:"file_id"`
-	BusID   int    `json:"busid"`
+	FileId  string `json:"file_id"`
+	BusId   int    `json:"busid"`
 }
 
 // GetGroupFileUrlData Endpoint get_group_file_url
 type GetGroupFileUrlData struct {
 	GroupId int    `json:"group_id"`
-	FileID  string `json:"file_id"`
-	BusID   int    `json:"busid"`
+	FileId  string `json:"file_id"`
+	BusId   int    `json:"busid"`
 }
 
 // GetGroupAtAllRemainData Endpoint get_group_at_all_remain
 type GetGroupAtAllRemainData struct {
 	GroupId int `json:"group_id"`
+}
+
+// HandleQuickOperationData Endpoint .handle_quick_operation
+type HandleQuickOperationData struct {
+	Context   string `json:"context"`
+	Operation string `json:"operation"`
 }
 
 // SendGroupNoticeData Endpoint _send_group_notice
@@ -296,6 +309,11 @@ type SendGroupNoticeData struct {
 // GetGroupNoticeData Endpoint _get_group_notice
 type GetGroupNoticeData struct {
 	GroupId int `json:"group_id"`
+}
+
+// ReloadEventFilterData Endpoint reload_event_filter
+type ReloadEventFilterData struct {
+	File string `json:"file"`
 }
 
 // DownloadFileData Endpoint download_file
@@ -313,22 +331,22 @@ type GetOnlineClientsData struct {
 // GetGroupMsgHistoryData Endpoint get_group_msg_history
 type GetGroupMsgHistoryData struct {
 	MessageSeq int `json:"message_seq"`
-	GroupID    int `json:"group_id"`
+	GroupId    int `json:"group_id"`
 }
 
 // SetEssenceMsgData Endpoint set_essence_msg
 type SetEssenceMsgData struct {
-	MessageID int `json:"message_id"`
+	MessageId int `json:"message_id"`
 }
 
 // DeleteEssenceMsgData Endpoint delete_essence_msg
 type DeleteEssenceMsgData struct {
-	MessageID int `json:"message_id"`
+	MessageId int `json:"message_id"`
 }
 
 // GetEssenceMsgListData Endpoint get_essence_msg_list
 type GetEssenceMsgListData struct {
-	GroupID int `json:"group_id"`
+	GroupId int `json:"group_id"`
 }
 
 // CheckUrlSafelyData Endpoint check_url_safely
@@ -349,11 +367,11 @@ type SetModelShowData struct {
 
 // DeleteUnidirectionalFriendData Endpoint delete_unidirectional_friend
 type DeleteUnidirectionalFriendData struct {
-	UserID int `json:"user_id"`
+	UserId int `json:"user_id"`
 }
 
 // SendPrivateForwardMsgData Endpoint send_private_forward_msg
 type SendPrivateForwardMsgData struct {
-	UserID   int    `json:"user_id"`
-	Messages string `json:"messages"`
+	UserId   int         `json:"user_id"`
+	Messages interface{} `json:"messages"`
 }
