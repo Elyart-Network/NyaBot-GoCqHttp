@@ -130,8 +130,10 @@ type SetFriendAddRequestData struct {
 
 // SetGroupAddRequestData Endpoint set_group_add_request
 type SetGroupAddRequestData struct {
-	Flag string `json:"flag"`
-	Type string `json:"type"`
+	Flag    string `json:"flag"`
+	Type    string `json:"type"`
+	Approve bool   `json:"approve"`
+	Reason  string `json:"reason"`
 }
 
 // GetLoginInfoData Endpoint get_login_info
