@@ -108,8 +108,8 @@ type SetGroupLeaveData struct {
 	IsDismiss bool `json:"is_dismiss"`
 }
 
-// SetGroupSpacialTitleData Endpoint set_group_special_title
-type SetGroupSpacialTitleData struct {
+// SetGroupSpecialTitleData Endpoint set_group_special_title
+type SetGroupSpecialTitleData struct {
 	GroupId      int    `json:"group_id"`
 	UserId       int    `json:"user_id"`
 	SpacialTitle string `json:"special_title"`
