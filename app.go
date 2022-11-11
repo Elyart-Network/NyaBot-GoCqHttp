@@ -30,12 +30,3 @@ func main() {
 		}
 	}
 }
-
-//Example
-//func tickWriter(connect *websocket.Conn) {
-//	err := connect.WriteMessage(websocket.TextMessage, []byte("from client to server"))
-//	if nil != err {
-//		log.Println(err)
-//		return
-//	}
-//}
