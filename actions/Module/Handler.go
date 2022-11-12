@@ -1,5 +1,5 @@
 package Module
 
-func Handler(data interface{}) {
-	println(data.(string))
+func Handler(context interface{}) {
+	println(context.(string))
 }

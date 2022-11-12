@@ -1,3 +1,3 @@
 package data
 
-type CqHandler func(data interface{})
+type CqHandler func(context interface{})

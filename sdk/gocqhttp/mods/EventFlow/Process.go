@@ -4,7 +4,7 @@ import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/data"
 )
 
-func Process(handler data.CqHandler, data interface{}) {
-	context := string(data.([]byte))
-	handler(context)
+func Process(handler data.CqHandler, context interface{}) {
+	result := string(context.([]byte))
+	handler(result)
 }
