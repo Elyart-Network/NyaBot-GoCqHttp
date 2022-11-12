@@ -12,7 +12,11 @@ func init() {
 	GcqServer.SetFileLog(false)
 }
 
+func handler(context interface{}) {
+	Module.Handler(context)
+}
+
 func main() {
-	GcqServer.Init(Module.Handler)
+	GcqServer.Init(handler)
 	GcqServer.RunServe()
 }
