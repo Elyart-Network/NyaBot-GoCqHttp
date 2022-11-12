@@ -1,6 +1,7 @@
 package GcqServer
 
 import (
+	"NyaBot-GoCqHttp/sdk/gocqhttp/data"
 	"NyaBot-GoCqHttp/sdk/gocqhttp/mods/EventFlow"
 	"github.com/gin-gonic/gin"
 	"io"
@@ -9,40 +10,39 @@ import (
 	"os"
 )
 
-var CqHttpHost = "http://127.0.0.1:4000/"
-var serverPort = "3000"
-var debugMode = false
-var fileLogger = false
+func Init(handler data.CqHandler) {
+	data.Handler = handler
+}
 
 func SetCqHost(cqHttpHost string) {
-	CqHttpHost = cqHttpHost
+	data.CqHttpHost = cqHttpHost
 }
 
-func SetRunPort(ServerPort string) {
-	serverPort = ServerPort
+func SetRunPort(serverPort string) {
+	data.ServerPort = serverPort
 }
 
-func SetDebug(DebugMode bool) {
-	debugMode = DebugMode
+func SetDebug(debugMode bool) {
+	data.DebugMode = debugMode
 }
 
-func SetFileLog(FileLogger bool) {
-	fileLogger = FileLogger
+func SetFileLog(fileLogger bool) {
+	data.FileLogger = fileLogger
 }
 
 func RunServe() {
-	if fileLogger == true {
+	if data.FileLogger == true {
 		gin.DisableConsoleColor()
 		file, _ := os.Create("app.log")
 		gin.DefaultWriter = io.MultiWriter(file)
 	}
-	if debugMode == false {
+	if data.DebugMode == false {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	server := gin.Default()
 	server.GET("/health", Health)
 	server.POST("/data", EventFlow.Receive)
-	err := http.ListenAndServe(":"+serverPort, server)
+	err := http.ListenAndServe(":"+data.ServerPort, server)
 	if err != nil {
 		log.Panicln(err)
 	}

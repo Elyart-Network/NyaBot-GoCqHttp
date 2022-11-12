@@ -1,7 +1,10 @@
 package EventFlow
 
-import "fmt"
+import (
+	"NyaBot-GoCqHttp/sdk/gocqhttp/data"
+)
 
-func Process(data interface{}) {
-	fmt.Println(string(data.([]byte)))
+func Process(handler data.CqHandler, data interface{}) {
+	context := string(data.([]byte))
+	handler(context)
 }

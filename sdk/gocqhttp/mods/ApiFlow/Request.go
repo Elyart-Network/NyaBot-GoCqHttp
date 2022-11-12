@@ -1,7 +1,7 @@
 package ApiFlow
 
 import (
-	"NyaBot-GoCqHttp/sdk/gocqhttp/mods/GcqServer"
+	"NyaBot-GoCqHttp/sdk/gocqhttp/data"
 	"bytes"
 	"encoding/json"
 	"io"
@@ -10,14 +10,14 @@ import (
 )
 
 // GetRequest Send Get Requests to GoCqHttp
-func GetRequest(Endpoint string) {
+func getRequest(Endpoint string) {
 
 }
 
 // PostRequest Send Post Requests to GoCqHttp
-func PostRequest(Endpoint string, Params interface{}) (Context []byte) {
+func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 	byteSlice, _ := json.MarshalIndent(Params, "", "")
-	Request, err := http.Post(GcqServer.CqHttpHost+Endpoint, "application/json", bytes.NewBuffer(byteSlice))
+	Request, err := http.Post(data.CqHttpHost+Endpoint, "application/json", bytes.NewBuffer(byteSlice))
 	if err != nil {
 		log.Println(err)
 	}
