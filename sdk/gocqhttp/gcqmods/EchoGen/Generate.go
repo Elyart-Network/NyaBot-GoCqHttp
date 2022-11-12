@@ -1,10 +1,12 @@
 package EchoGen
 
-import "golang.org/x/crypto/bcrypt"
-
-const Echo = "DtLoKo2fDNsqRVmsibBoMjwvRwMTWN"
+import (
+	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
+	"golang.org/x/crypto/bcrypt"
+)
 
 func Generate() string {
-	encodedEcho, _ := bcrypt.GenerateFromPassword([]byte(Echo), 3)
+	// Generate a hash from password string
+	encodedEcho, _ := bcrypt.GenerateFromPassword([]byte(gcqdata.EchoHash), 3)
 	return string(encodedEcho)
 }

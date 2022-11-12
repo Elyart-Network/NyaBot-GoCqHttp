@@ -30,6 +30,10 @@ func SetFileLog(fileLogger bool) {
 	gcqdata.FileLogger = fileLogger
 }
 
+func SetEchoHash(echoHash string) {
+	gcqdata.EchoHash = echoHash
+}
+
 func RunServe() {
 	if gcqdata.FileLogger == true {
 		gin.DisableConsoleColor()
