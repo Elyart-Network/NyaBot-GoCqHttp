@@ -1,4 +1,4 @@
-package ApiFlow
+package gcqapi
 
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
