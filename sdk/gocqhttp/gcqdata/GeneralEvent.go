@@ -1,4 +1,4 @@
-package data
+package gcqdata
 
 type GeneralEvent struct {
 	Time     int    `json:"time"`

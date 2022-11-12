@@ -1,4 +1,4 @@
-package data
+package gcqdata
 
 // SendPrivateMsgData Endpoint send_private_msg
 type SendPrivateMsgData struct {

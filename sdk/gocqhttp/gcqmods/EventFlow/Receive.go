@@ -1,12 +1,12 @@
 package EventFlow
 
 import (
-	"NyaBot-GoCqHttp/sdk/gocqhttp/data"
+	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
 	"github.com/gin-gonic/gin"
 	"io"
 )
 
 func Receive(c *gin.Context) {
 	context, _ := io.ReadAll(c.Request.Body)
-	Process(data.Handler, context)
+	Process(gcqdata.Handler, context)
 }

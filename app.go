@@ -2,7 +2,7 @@ package main
 
 import (
 	"NyaBot-GoCqHttp/actions/Module"
-	"NyaBot-GoCqHttp/sdk/gocqhttp/mods/GcqServer"
+	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqmods/GcqServer"
 )
 
 func init() {

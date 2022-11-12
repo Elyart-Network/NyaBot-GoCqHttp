@@ -1,4 +1,4 @@
-package data
+package gcqdata
 
 // GetGuildServiceProfileData Endpoint get_guild_service_profile
 type GetGuildServiceProfileData struct {
