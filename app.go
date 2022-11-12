@@ -16,7 +16,7 @@ func init() {
 
 func handler(context interface{}) {
 	// Module Register
-	Module.Handler(context)
+	go Module.Handler(context)
 }
 
 func main() {
