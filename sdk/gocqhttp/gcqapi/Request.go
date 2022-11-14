@@ -41,12 +41,11 @@ func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 }
 
 // RespDecoder Decode Json respond to Only Data
-func respDecoder(Context []byte) []byte {
+func respDecoder(Context []byte, Struct interface{}) {
 	RespStruct := respStruct{}
 	err := json.Unmarshal(Context, &RespStruct)
 	if err != nil {
 		log.Println(err)
 	}
-	Respond, _ := json.Marshal(RespStruct.Data)
-	return Respond
+	Struct = RespStruct.Data
 }

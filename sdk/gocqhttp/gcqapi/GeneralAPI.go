@@ -55,30 +55,30 @@ func DeleteMsg(MessageId int) {
 }
 
 // GetMsg Endpoint get_msg
-func GetMsg(MessageId int) []byte {
+func GetMsg(Struct interface{}, MessageId int) {
 	Data := gcqdata.GetMsgData{
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_msg", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetForwardMsg Endpoint get_forward_msg
-func GetForwardMsg(MessageId string) []byte {
+func GetForwardMsg(Struct interface{}, MessageId string) {
 	Data := gcqdata.GetForwardMsgData{
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_forward_msg", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetImage Endpoint get_image
-func GetImage(File string) []byte {
+func GetImage(Struct interface{}, File string) {
 	Data := gcqdata.GetImageData{
 		File: File,
 	}
 	Resp := postRequest("get_image", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // MarkMsgAsRead Endpoint mark_msg_as_read
@@ -205,15 +205,15 @@ func SetGroupAddRequest(Flag string, SubType string, Approve bool, Reason string
 }
 
 // GetLoginInfo Endpoint get_login_info
-func GetLoginInfo() []byte {
+func GetLoginInfo(Struct interface{}) {
 	Resp := getRequest("get_login_info")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // QidianGetAccountInfo Endpoint qidian_get_account_info
-func QidianGetAccountInfo() []byte {
+func QidianGetAccountInfo(Struct interface{}) {
 	Resp := getRequest("qidian_get_account_info")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // SetQQProfile Endpoint set_qq_profile
@@ -229,25 +229,25 @@ func SetQQProfile(Nickname string, Company string, Email string, College string,
 }
 
 // GetStrangerInfo Endpoint get_stranger_info
-func GetStrangerInfo(UserId int, NoCache bool) []byte {
+func GetStrangerInfo(Struct interface{}, UserId int, NoCache bool) {
 	Data := gcqdata.GetStrangerInfoData{
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_stranger_info", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetFriendList Endpoint get_friend_list
-func GetFriendList() []byte {
+func GetFriendList(Struct interface{}) {
 	Resp := getRequest("get_friend_list")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list
-func GetUnidirectionalFriendList() []byte {
+func GetUnidirectionalFriendList(Struct interface{}) {
 	Resp := getRequest("get_unidirectional_friend_list")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // DeleteFriend Endpoint delete_friend
@@ -257,62 +257,62 @@ func DeleteFriend(FriendId int) {
 }
 
 // GetGroupInfo Endpoint get_group_info
-func GetGroupInfo(GroupId int, NoCache bool) []byte {
+func GetGroupInfo(Struct interface{}, GroupId int, NoCache bool) {
 	Data := gcqdata.GetGroupInfoData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_info", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupList Endpoint get_group_list
-func GetGroupList() []byte {
+func GetGroupList(Struct interface{}) {
 	Resp := getRequest("get_group_list")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupMemberInfo Endpoint get_group_member_info
-func GetGroupMemberInfo(GroupId int, UserId int, NoCache bool) []byte {
+func GetGroupMemberInfo(Struct interface{}, GroupId int, UserId int, NoCache bool) {
 	Data := gcqdata.GetGroupMemberInfoData{
 		GroupId: GroupId,
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_info", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupMemberList Endpoint get_group_member_list
-func GetGroupMemberList(GroupId int, NoCache bool) []byte {
+func GetGroupMemberList(Struct interface{}, GroupId int, NoCache bool) {
 	Data := gcqdata.GetGroupMemberListData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_list", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupHonorInfo Endpoint get_group_honor_info
-func GetGroupHonorInfo(GroupId int, Type string) []byte {
+func GetGroupHonorInfo(Struct interface{}, GroupId int, Type string) {
 	Data := gcqdata.GetGroupHonorInfoData{
 		GroupId: GroupId,
 		Type:    Type,
 	}
 	Resp := postRequest("get_group_honor_info", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // CanSendImage Endpoint can_send_image
-func CanSendImage() []byte {
+func CanSendImage(Struct interface{}) {
 	Resp := getRequest("can_send_image")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetVersionInfo Endpoint get_version_info
-func GetVersionInfo() []byte {
+func GetVersionInfo(Struct interface{}) {
 	Resp := getRequest("get_version_info")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // SetRestart Endpoint set_restart
@@ -332,23 +332,23 @@ func SetGroupPortrait(GroupId int, File string, Cache int) {
 }
 
 // GetWordSlices Endpoint .get_word_slices
-func GetWordSlices(Content string) []byte {
+func GetWordSlices(Struct interface{}, Content string) {
 	Data := gcqdata.GetWordSlicesData{Content: Content}
 	Resp := postRequest("get_word_slices", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // OCRImage Endpoint ocr_image
-func OCRImage(Image string) []byte {
+func OCRImage(Struct interface{}, Image string) {
 	Data := gcqdata.OCRImageData{Image: Image}
 	Resp := postRequest("ocr_image", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupSystemMsg Endpoint get_group_system_msg
-func GetGroupSystemMsg() []byte {
+func GetGroupSystemMsg(Struct interface{}) {
 	Resp := getRequest("get_group_system_msg")
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // UploadPrivateFile Endpoint upload_private_file
@@ -373,10 +373,10 @@ func UploadGroupFile(GroupId int, File string, Name string, Folder string) {
 }
 
 // GetGroupFileSystemInfo Endpoint get_group_file_system_info
-func GetGroupFileSystemInfo(GroupId int) []byte {
+func GetGroupFileSystemInfo(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupFileSystemInfoData{GroupId: GroupId}
 	Resp := postRequest("get_group_file_system_info", Data)
-	return respDecoder(Resp)
+	respDecoder(Resp, Struct)
 }
 
 // GetGroupRootFiles Endpoint get_group_root_files TODO
