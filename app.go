@@ -11,7 +11,6 @@ func init() {
 	GcqServer.SetRunPort("3000")
 	GcqServer.SetDebug(true)
 	GcqServer.SetFileLog(false)
-	GcqServer.SetEchoHash("123456")
 }
 
 func handler(context interface{}) {

@@ -9,6 +9,14 @@ import (
 	"net/http"
 )
 
+type respStruct struct {
+	Status  string      `json:"status"`
+	RetCode int         `json:"retcode"`
+	Msg     string      `json:"msg"`
+	Data    interface{} `json:"data"`
+	Echo    string      `json:"echo"`
+}
+
 // GetRequest Send Get Requests to GoCqHttp
 func getRequest(Endpoint string) (Context []byte) {
 	Request, err := http.Get(gcqdata.CqHttpHost + Endpoint)
@@ -32,11 +40,13 @@ func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 	return Context
 }
 
-// JsonDecoder Decode Json to Struct
-func jsonDecoder(Context []byte, Struct interface{}) interface{} {
-	err := json.Unmarshal(Context, Struct)
+// RespDecoder Decode Json respond to Struct
+func respDecoder(Context []byte, Struct interface{}) interface{} {
+	RespStruct := respStruct{}
+	err := json.Unmarshal(Context, &RespStruct)
 	if err != nil {
 		log.Println(err)
 	}
+	Struct = RespStruct.Data
 	return Struct
 }

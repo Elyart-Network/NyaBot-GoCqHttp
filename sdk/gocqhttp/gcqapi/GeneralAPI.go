@@ -60,7 +60,7 @@ func GetMsg(MessageId int) interface{} {
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_msg", Data)
-	return jsonDecoder(Resp, gcqdata.GetMsgResp{})
+	return respDecoder(Resp, gcqdata.GetMsgResp{})
 }
 
 // GetForwardMsg Endpoint get_forward_msg
@@ -69,7 +69,7 @@ func GetForwardMsg(MessageId string) interface{} {
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_forward_msg", Data)
-	return jsonDecoder(Resp, gcqdata.GetForwardMsgResp{})
+	return respDecoder(Resp, gcqdata.GetForwardMsgResp{})
 }
 
 // GetImage Endpoint get_image
@@ -78,7 +78,7 @@ func GetImage(File string) interface{} {
 		File: File,
 	}
 	Resp := postRequest("get_image", Data)
-	return jsonDecoder(Resp, gcqdata.GetImageResp{})
+	return respDecoder(Resp, gcqdata.GetImageResp{})
 }
 
 // MarkMsgAsRead Endpoint mark_msg_as_read
@@ -207,13 +207,13 @@ func SetGroupAddRequest(Flag string, SubType string, Approve bool, Reason string
 // GetLoginInfo Endpoint get_login_info
 func GetLoginInfo() interface{} {
 	Resp := getRequest("get_login_info")
-	return jsonDecoder(Resp, gcqdata.GetLoginInfoResp{})
+	return respDecoder(Resp, gcqdata.GetLoginInfoResp{})
 }
 
 // QidianGetAccountInfo Endpoint qidian_get_account_info
 func QidianGetAccountInfo() interface{} {
 	Resp := getRequest("qidian_get_account_info")
-	return jsonDecoder(Resp, gcqdata.QidianGetAccountInfoResp{})
+	return respDecoder(Resp, gcqdata.QidianGetAccountInfoResp{})
 }
 
 // SetQQProfile Endpoint set_qq_profile
@@ -235,19 +235,19 @@ func GetStrangerInfo(UserId int, NoCache bool) interface{} {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_stranger_info", Data)
-	return jsonDecoder(Resp, gcqdata.GetStrangerInfoResp{})
+	return respDecoder(Resp, gcqdata.GetStrangerInfoResp{})
 }
 
 // GetFriendList Endpoint get_friend_list
 func GetFriendList() interface{} {
 	Resp := getRequest("get_friend_list")
-	return jsonDecoder(Resp, gcqdata.GetFriendListResp{})
+	return respDecoder(Resp, gcqdata.GetFriendListResp{})
 }
 
 // GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list
 func GetUnidirectionalFriendList() interface{} {
 	Resp := getRequest("get_unidirectional_friend_list")
-	return jsonDecoder(Resp, gcqdata.GetUnidirectionalFriendListResp{})
+	return respDecoder(Resp, gcqdata.GetUnidirectionalFriendListResp{})
 }
 
 // DeleteFriend Endpoint delete_friend
@@ -263,13 +263,13 @@ func GetGroupInfo(GroupId int, NoCache bool) interface{} {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_info", Data)
-	return jsonDecoder(Resp, gcqdata.GetGroupInfoResp{})
+	return respDecoder(Resp, gcqdata.GetGroupInfoResp{})
 }
 
 // GetGroupList Endpoint get_group_list
 func GetGroupList() interface{} {
 	Resp := getRequest("get_group_list")
-	return jsonDecoder(Resp, gcqdata.GetGroupListResp{})
+	return respDecoder(Resp, gcqdata.GetGroupListResp{})
 }
 
 // GetGroupMemberInfo Endpoint get_group_member_info
@@ -280,7 +280,7 @@ func GetGroupMemberInfo(GroupId int, UserId int, NoCache bool) interface{} {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_info", Data)
-	return jsonDecoder(Resp, gcqdata.GetGroupMemberInfoResp{})
+	return respDecoder(Resp, gcqdata.GetGroupMemberInfoResp{})
 }
 
 // GetGroupMemberList Endpoint get_group_member_list
@@ -290,7 +290,7 @@ func GetGroupMemberList(GroupId int, NoCache bool) interface{} {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_list", Data)
-	return jsonDecoder(Resp, gcqdata.GetGroupMemberListResp{})
+	return respDecoder(Resp, gcqdata.GetGroupMemberListResp{})
 }
 
 // GetGroupHonorInfo Endpoint get_group_honor_info
@@ -300,19 +300,19 @@ func GetGroupHonorInfo(GroupId int, Type string) interface{} {
 		Type:    Type,
 	}
 	Resp := postRequest("get_group_honor_info", Data)
-	return jsonDecoder(Resp, gcqdata.GetGroupHonorInfoResp{})
+	return respDecoder(Resp, gcqdata.GetGroupHonorInfoResp{})
 }
 
 // CanSendImage Endpoint can_send_image
 func CanSendImage() interface{} {
 	Resp := getRequest("can_send_image")
-	return jsonDecoder(Resp, gcqdata.CanSendImageResp{})
+	return respDecoder(Resp, gcqdata.CanSendImageResp{})
 }
 
 // GetVersionInfo Endpoint get_version_info
 func GetVersionInfo() interface{} {
 	Resp := getRequest("get_version_info")
-	return jsonDecoder(Resp, gcqdata.GetVersionInfoResp{})
+	return respDecoder(Resp, gcqdata.GetVersionInfoResp{})
 }
 
 // SetRestart Endpoint set_restart
@@ -335,20 +335,20 @@ func SetGroupPortrait(GroupId int, File string, Cache int) {
 func GetWordSlices(Content string) interface{} {
 	Data := gcqdata.GetWordSlicesData{Content: Content}
 	Resp := postRequest("get_word_slices", Data)
-	return jsonDecoder(Resp, gcqdata.GetWordSlicesResp{})
+	return respDecoder(Resp, gcqdata.GetWordSlicesResp{})
 }
 
 // OCRImage Endpoint ocr_image
 func OCRImage(Image string) interface{} {
 	Data := gcqdata.OCRImageData{Image: Image}
 	Resp := postRequest("ocr_image", Data)
-	return jsonDecoder(Resp, gcqdata.OCRImageResp{})
+	return respDecoder(Resp, gcqdata.OCRImageResp{})
 }
 
 // GetGroupSystemMsg Endpoint get_group_system_msg
 func GetGroupSystemMsg() interface{} {
 	Resp := getRequest("get_group_system_msg")
-	return jsonDecoder(Resp, gcqdata.GetGroupSystemMsgResp{})
+	return respDecoder(Resp, gcqdata.GetGroupSystemMsgResp{})
 }
 
 // UploadPrivateFile Endpoint upload_private_file
@@ -376,7 +376,7 @@ func UploadGroupFile(GroupId int, File string, Name string, Folder string) {
 func GetGroupFileSystemInfo(GroupId int) interface{} {
 	Data := gcqdata.GetGroupFileSystemInfoData{GroupId: GroupId}
 	Resp := postRequest("get_group_file_system_info", Data)
-	return jsonDecoder(Resp, gcqdata.GetGroupFileSystemInfoResp{})
+	return respDecoder(Resp, gcqdata.GetGroupFileSystemInfoResp{})
 }
 
 // GetGroupRootFiles Endpoint get_group_root_files TODO
