@@ -2,7 +2,6 @@ package gcqapi
 
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
-	"github.com/gorilla/websocket"
 )
 
 // SendPrivateMsg Endpoint send_private_msg
@@ -55,28 +54,31 @@ func DeleteMsg(MessageId int) {
 	postRequest("delete_msg", Data)
 }
 
-// GetMsg Endpoint get_msg TODO
-func GetMsg(MessageId int) {
+// GetMsg Endpoint get_msg
+func GetMsg(MessageId int) interface{} {
 	Data := gcqdata.GetMsgData{
 		MessageId: MessageId,
 	}
-	postRequest("get_msg", Data)
+	Resp := postRequest("get_msg", Data)
+	return jsonDecoder(Resp, gcqdata.GetMsgResp{})
 }
 
-// GetForwardMsg Endpoint get_forward_msg TODO
-func GetForwardMsg(MessageId string) {
+// GetForwardMsg Endpoint get_forward_msg
+func GetForwardMsg(MessageId string) interface{} {
 	Data := gcqdata.GetForwardMsgData{
 		MessageId: MessageId,
 	}
-	postRequest("get_forward_msg", Data)
+	Resp := postRequest("get_forward_msg", Data)
+	return jsonDecoder(Resp, gcqdata.GetForwardMsgResp{})
 }
 
-// GetImage Endpoint get_image TODO
-func GetImage(File string) {
+// GetImage Endpoint get_image
+func GetImage(File string) interface{} {
 	Data := gcqdata.GetImageData{
 		File: File,
 	}
-	postRequest("get_image", Data)
+	Resp := postRequest("get_image", Data)
+	return jsonDecoder(Resp, gcqdata.GetImageResp{})
 }
 
 // MarkMsgAsRead Endpoint mark_msg_as_read
@@ -202,14 +204,16 @@ func SetGroupAddRequest(Flag string, SubType string, Approve bool, Reason string
 	postRequest("set_group_add_request", Data)
 }
 
-// GetLoginInfo Endpoint get_login_info TODO
-func GetLoginInfo(c *websocket.Conn) {
-	postRequest("get_login_info", nil)
+// GetLoginInfo Endpoint get_login_info
+func GetLoginInfo() interface{} {
+	Resp := getRequest("get_login_info")
+	return jsonDecoder(Resp, gcqdata.GetLoginInfoResp{})
 }
 
-// QidianGetAccountInfo Endpoint qidian_get_account_info TODO
-func QidianGetAccountInfo(c *websocket.Conn) {
-	postRequest("qidian_get_account_info", nil)
+// QidianGetAccountInfo Endpoint qidian_get_account_info
+func QidianGetAccountInfo() interface{} {
+	Resp := getRequest("qidian_get_account_info")
+	return jsonDecoder(Resp, gcqdata.QidianGetAccountInfoResp{})
 }
 
 // SetQQProfile Endpoint set_qq_profile
@@ -224,23 +228,26 @@ func SetQQProfile(Nickname string, Company string, Email string, College string,
 	postRequest("set_qq_profile", Data)
 }
 
-// GetStrangerInfo Endpoint get_stranger_info TODO
-func GetStrangerInfo(UserId int, NoCache bool) {
+// GetStrangerInfo Endpoint get_stranger_info
+func GetStrangerInfo(UserId int, NoCache bool) interface{} {
 	Data := gcqdata.GetStrangerInfoData{
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
-	postRequest("get_stranger_info", Data)
+	Resp := postRequest("get_stranger_info", Data)
+	return jsonDecoder(Resp, gcqdata.GetStrangerInfoResp{})
 }
 
-// GetFriendList Endpoint get_friend_list TODO
-func GetFriendList(c *websocket.Conn) {
-	postRequest("get_friend_list", nil)
+// GetFriendList Endpoint get_friend_list
+func GetFriendList() interface{} {
+	Resp := getRequest("get_friend_list")
+	return jsonDecoder(Resp, gcqdata.GetFriendListResp{})
 }
 
-// GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list TODO
-func GetUnidirectionalFriendList(c *websocket.Conn) {
-	postRequest("get_unidirectional_friend_list", nil)
+// GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list
+func GetUnidirectionalFriendList() interface{} {
+	Resp := getRequest("get_unidirectional_friend_list")
+	return jsonDecoder(Resp, gcqdata.GetUnidirectionalFriendListResp{})
 }
 
 // DeleteFriend Endpoint delete_friend
@@ -249,56 +256,63 @@ func DeleteFriend(FriendId int) {
 	postRequest("delete_friend", Data)
 }
 
-// GetGroupInfo Endpoint get_group_info TODO
-func GetGroupInfo(GroupId int, NoCache bool) {
+// GetGroupInfo Endpoint get_group_info
+func GetGroupInfo(GroupId int, NoCache bool) interface{} {
 	Data := gcqdata.GetGroupInfoData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
-	postRequest("get_group_info", Data)
+	Resp := postRequest("get_group_info", Data)
+	return jsonDecoder(Resp, gcqdata.GetGroupInfoResp{})
 }
 
-// GetGroupList Endpoint get_group_list TODO
-func GetGroupList(c *websocket.Conn) {
-	postRequest("get_group_list", nil)
+// GetGroupList Endpoint get_group_list
+func GetGroupList() interface{} {
+	Resp := getRequest("get_group_list")
+	return jsonDecoder(Resp, gcqdata.GetGroupListResp{})
 }
 
-// GetGroupMemberInfo Endpoint get_group_member_info TODO
-func GetGroupMemberInfo(GroupId int, UserId int, NoCache bool) {
+// GetGroupMemberInfo Endpoint get_group_member_info
+func GetGroupMemberInfo(GroupId int, UserId int, NoCache bool) interface{} {
 	Data := gcqdata.GetGroupMemberInfoData{
 		GroupId: GroupId,
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
-	postRequest("get_group_member_info", Data)
+	Resp := postRequest("get_group_member_info", Data)
+	return jsonDecoder(Resp, gcqdata.GetGroupMemberInfoResp{})
 }
 
-// GetGroupMemberList Endpoint get_group_member_list TODO
-func GetGroupMemberList(GroupId int, NoCache bool) {
+// GetGroupMemberList Endpoint get_group_member_list
+func GetGroupMemberList(GroupId int, NoCache bool) interface{} {
 	Data := gcqdata.GetGroupMemberListData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
-	postRequest("get_group_member_list", Data)
+	Resp := postRequest("get_group_member_list", Data)
+	return jsonDecoder(Resp, gcqdata.GetGroupMemberListResp{})
 }
 
-// GetGroupHonorInfo Endpoint get_group_honor_info TODO
-func GetGroupHonorInfo(GroupId int, Type string) {
+// GetGroupHonorInfo Endpoint get_group_honor_info
+func GetGroupHonorInfo(GroupId int, Type string) interface{} {
 	Data := gcqdata.GetGroupHonorInfoData{
 		GroupId: GroupId,
 		Type:    Type,
 	}
-	postRequest("get_group_honor_info", Data)
+	Resp := postRequest("get_group_honor_info", Data)
+	return jsonDecoder(Resp, gcqdata.GetGroupHonorInfoResp{})
 }
 
-// CanSendImage Endpoint can_send_image TODO
-func CanSendImage(c *websocket.Conn) {
-	postRequest("can_send_image", nil)
+// CanSendImage Endpoint can_send_image
+func CanSendImage() interface{} {
+	Resp := getRequest("can_send_image")
+	return jsonDecoder(Resp, gcqdata.CanSendImageResp{})
 }
 
-// GetVersionInfo Endpoint get_version_info TODO
-func GetVersionInfo(c *websocket.Conn) {
-	postRequest("get_version_info", nil)
+// GetVersionInfo Endpoint get_version_info
+func GetVersionInfo() interface{} {
+	Resp := getRequest("get_version_info")
+	return jsonDecoder(Resp, gcqdata.GetVersionInfoResp{})
 }
 
 // SetRestart Endpoint set_restart
@@ -317,21 +331,24 @@ func SetGroupPortrait(GroupId int, File string, Cache int) {
 	postRequest("set_group_portrait", Data)
 }
 
-// GetWordSlices Endpoint .get_word_slices TODO
-func GetWordSlices(Content string) {
+// GetWordSlices Endpoint .get_word_slices
+func GetWordSlices(Content string) interface{} {
 	Data := gcqdata.GetWordSlicesData{Content: Content}
-	postRequest("get_word_slices", Data)
+	Resp := postRequest("get_word_slices", Data)
+	return jsonDecoder(Resp, gcqdata.GetWordSlicesResp{})
 }
 
-// OCRImage Endpoint ocr_image TODO
-func OCRImage(Image string) {
+// OCRImage Endpoint ocr_image
+func OCRImage(Image string) interface{} {
 	Data := gcqdata.OCRImageData{Image: Image}
-	postRequest("ocr_image", Data)
+	Resp := postRequest("ocr_image", Data)
+	return jsonDecoder(Resp, gcqdata.OCRImageResp{})
 }
 
-// GetGroupSystemMsg Endpoint get_group_system_msg TODO
-func GetGroupSystemMsg(c *websocket.Conn) {
-	postRequest("get_group_system_msg", nil)
+// GetGroupSystemMsg Endpoint get_group_system_msg
+func GetGroupSystemMsg() interface{} {
+	Resp := getRequest("get_group_system_msg")
+	return jsonDecoder(Resp, gcqdata.GetGroupSystemMsgResp{})
 }
 
 // UploadPrivateFile Endpoint upload_private_file
@@ -355,10 +372,11 @@ func UploadGroupFile(GroupId int, File string, Name string, Folder string) {
 	postRequest("upload_group_file", Data)
 }
 
-// GetGroupFileSystemInfo Endpoint get_group_file_system_info TODO
-func GetGroupFileSystemInfo(GroupId int) {
+// GetGroupFileSystemInfo Endpoint get_group_file_system_info
+func GetGroupFileSystemInfo(GroupId int) interface{} {
 	Data := gcqdata.GetGroupFileSystemInfoData{GroupId: GroupId}
-	postRequest("get_group_file_system_info", Data)
+	Resp := postRequest("get_group_file_system_info", Data)
+	return jsonDecoder(Resp, gcqdata.GetGroupFileSystemInfoResp{})
 }
 
 // GetGroupRootFiles Endpoint get_group_root_files TODO
@@ -416,7 +434,7 @@ func GetGroupFileUrl(GroupId int, FileId string, BusId int) {
 }
 
 // GetStatus Endpoint get_status TODO
-func GetStatus(c *websocket.Conn) {
+func GetStatus() {
 	postRequest("get_status", nil)
 }
 

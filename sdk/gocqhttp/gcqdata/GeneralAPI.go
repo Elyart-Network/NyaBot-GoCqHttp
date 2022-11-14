@@ -173,8 +173,8 @@ type SetGroupAddRequestData struct {
 	Reason  string `json:"reason"`
 }
 
-// GetLoginInfoData Endpoint get_login_info
-type GetLoginInfoData struct {
+// GetLoginInfoResp Endpoint get_login_info
+type GetLoginInfoResp struct {
 	UserId   int    `json:"user_id"`
 	Nickname string `json:"nickname"`
 }
