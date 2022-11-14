@@ -23,7 +23,12 @@ func getRequest(Endpoint string) (Context []byte) {
 	if err != nil {
 		log.Println(err)
 	}
-	defer Request.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(Request.Body)
 	Context, _ = io.ReadAll(Request.Body)
 	return Context
 }
@@ -35,7 +40,12 @@ func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 	if err != nil {
 		log.Println(err)
 	}
-	defer Request.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			log.Println(err)
+		}
+	}(Request.Body)
 	Context, _ = io.ReadAll(Request.Body)
 	return Context
 }
