@@ -1,7 +1,7 @@
 package main
 
 import (
-	"NyaBot-GoCqHttp/actions/Module"
+	"NyaBot-GoCqHttp/module"
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqmods/GcqServer"
 )
 
@@ -13,13 +13,8 @@ func init() {
 	GcqServer.SetFileLog(false)
 }
 
-func handler(context interface{}) {
-	// Module Register
-	go Module.Handler(context)
-}
-
 func main() {
 	// Start GcqServer
-	GcqServer.Init(handler)
+	GcqServer.Init(module.Handler)
 	GcqServer.RunServe()
 }

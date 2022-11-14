@@ -1,5 +1,0 @@
-package Module
-
-func Loader() {
-
-}

@@ -1,4 +1,4 @@
-package Module
+package Base
 
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqapi"
@@ -6,9 +6,10 @@ import (
 	"encoding/json"
 )
 
-func Handler(context interface{}) {
-	Msg := gcqapi.GetLoginInfo()
+func test() {
+	// Test
+	Resp := gcqapi.GetLoginInfo()
 	Struct := gcqdata.GetLoginInfoResp{}
-	json.Unmarshal(Msg, &Struct)
+	json.Unmarshal(Resp, &Struct)
 	println(Struct.Nickname)
 }
