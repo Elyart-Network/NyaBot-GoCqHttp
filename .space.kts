@@ -6,10 +6,10 @@
 
 job("Build & Test") {
     container(displayName = "GoLang", image = "golang:1.19.2") {
-        args("go", "env -w GO111MODULE=on")
-        args("go", "env -w GOPROXY=https://goproxy.cn,direct")
-        args("go", "mod download")
-        args("go", "build -o nyabot-gocqhttp")
+        args("export", "GO111MODULE=on")
+        args("export", "GOPROXY=https://goproxy.cn,direct")
+        args("go", "get")
+        args("go", "build")
     }
     startOn {
         gitPush { enabled = true }
