@@ -6,8 +6,8 @@
 
 job("Build & Test") {
     container(displayName = "GoLang", image = "golang:1.19.2") {
-        env.set("GO111MODULE", "on")
-        env.set("GOPROXY", "https://goproxy.cn")
+        args("go", "env -w GO111MODULE=on")
+        args("go", "env -w GOPROXY=https://goproxy.cn,direct")
         args("go", "mod download")
         args("go", "build -o nyabot-gocqhttp")
     }
