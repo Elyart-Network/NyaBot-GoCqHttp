@@ -11,7 +11,7 @@ job("Build & Test") {
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                go build -i -o nyabot-gocqhttp
+                go build -o nyabot-gocqhttp
             """
         }
     }
