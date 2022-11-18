@@ -8,8 +8,12 @@ job("Build & Test") {
     container(displayName = "GoLang", image = "golang:1.19.2") {
         env.set("GO111MODULE", "on")
         env.set("GOPROXY", "https://mirrors.aliyun.com/goproxy/")
-        args("go", "get")
-        args("go", "build")
+        shellScript {
+            interpreter = "/bin/bash"
+            content = """
+                go build -i -o nyabot-gocqhttp
+            """
+        }
     }
     startOn {
         gitPush { enabled = true }
