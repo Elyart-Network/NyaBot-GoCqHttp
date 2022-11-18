@@ -9,7 +9,8 @@ job("Build & Test") {
         shellScript {
             interpreter = "/bin/bash"
             content = """
-                go env -w GOPROXY=https://mirrors.aliyun.com/goproxy/
+                go env -w GO111MODULE=on
+                go env -w GOPROXY=https://goproxy.cn,direct
                 go mod download
                 go build -o nyabot-gocqhttp
             """
