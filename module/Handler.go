@@ -7,6 +7,6 @@ import (
 
 func Handler(c interface{}) {
 	// Initialize all modules
-	Base.Loader(c)
-	Common.Loader(c)
+	go Base.Loader(c)
+	go Common.Loader(c)
 }
