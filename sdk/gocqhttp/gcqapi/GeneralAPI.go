@@ -2,6 +2,7 @@ package gcqapi
 
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
+	"log"
 )
 
 // SendPrivateMsg Endpoint send_private_msg
@@ -60,7 +61,7 @@ func GetMsg(Struct interface{}, MessageId int) {
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_msg", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetForwardMsg Endpoint get_forward_msg
@@ -69,7 +70,7 @@ func GetForwardMsg(Struct interface{}, MessageId string) {
 		MessageId: MessageId,
 	}
 	Resp := postRequest("get_forward_msg", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetImage Endpoint get_image
@@ -78,7 +79,7 @@ func GetImage(Struct interface{}, File string) {
 		File: File,
 	}
 	Resp := postRequest("get_image", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // MarkMsgAsRead Endpoint mark_msg_as_read
@@ -205,15 +206,21 @@ func SetGroupAddRequest(Flag string, SubType string, Approve bool, Reason string
 }
 
 // GetLoginInfo Endpoint get_login_info
-func GetLoginInfo(Struct interface{}) {
-	Resp := getRequest("get_login_info")
-	respDecoder(Resp, Struct)
+func GetLoginInfo() gcqdata.GetLoginInfoResp {
+	Struct := gcqdata.GetLoginInfoResp{}
+	Request := getRequest("get_login_info")
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // QidianGetAccountInfo Endpoint qidian_get_account_info
 func QidianGetAccountInfo(Struct interface{}) {
 	Resp := getRequest("qidian_get_account_info")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // SetQQProfile Endpoint set_qq_profile
@@ -235,19 +242,19 @@ func GetStrangerInfo(Struct interface{}, UserId int, NoCache bool) {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_stranger_info", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetFriendList Endpoint get_friend_list
 func GetFriendList(Struct interface{}) {
 	Resp := getRequest("get_friend_list")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list
 func GetUnidirectionalFriendList(Struct interface{}) {
 	Resp := getRequest("get_unidirectional_friend_list")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // DeleteFriend Endpoint delete_friend
@@ -263,13 +270,13 @@ func GetGroupInfo(Struct interface{}, GroupId int, NoCache bool) {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_info", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupList Endpoint get_group_list
 func GetGroupList(Struct interface{}) {
 	Resp := getRequest("get_group_list")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupMemberInfo Endpoint get_group_member_info
@@ -280,7 +287,7 @@ func GetGroupMemberInfo(Struct interface{}, GroupId int, UserId int, NoCache boo
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_info", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupMemberList Endpoint get_group_member_list
@@ -290,7 +297,7 @@ func GetGroupMemberList(Struct interface{}, GroupId int, NoCache bool) {
 		NoCache: NoCache,
 	}
 	Resp := postRequest("get_group_member_list", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupHonorInfo Endpoint get_group_honor_info
@@ -300,19 +307,19 @@ func GetGroupHonorInfo(Struct interface{}, GroupId int, Type string) {
 		Type:    Type,
 	}
 	Resp := postRequest("get_group_honor_info", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // CanSendImage Endpoint can_send_image
 func CanSendImage(Struct interface{}) {
 	Resp := getRequest("can_send_image")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetVersionInfo Endpoint get_version_info
 func GetVersionInfo(Struct interface{}) {
 	Resp := getRequest("get_version_info")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // SetRestart Endpoint set_restart
@@ -335,20 +342,20 @@ func SetGroupPortrait(GroupId int, File string, Cache int) {
 func GetWordSlices(Struct interface{}, Content string) {
 	Data := gcqdata.GetWordSlicesData{Content: Content}
 	Resp := postRequest("get_word_slices", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // OCRImage Endpoint ocr_image
 func OCRImage(Struct interface{}, Image string) {
 	Data := gcqdata.OCRImageData{Image: Image}
 	Resp := postRequest("ocr_image", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupSystemMsg Endpoint get_group_system_msg
 func GetGroupSystemMsg(Struct interface{}) {
 	Resp := getRequest("get_group_system_msg")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // UploadPrivateFile Endpoint upload_private_file
@@ -376,14 +383,14 @@ func UploadGroupFile(GroupId int, File string, Name string, Folder string) {
 func GetGroupFileSystemInfo(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupFileSystemInfoData{GroupId: GroupId}
 	Resp := postRequest("get_group_file_system_info", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupRootFiles Endpoint get_group_root_files
 func GetGroupRootFiles(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupRootFilesData{GroupId: GroupId}
 	Resp := postRequest("get_group_root_files", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupFilesByFolder Endpoint get_group_files_by_folder
@@ -393,7 +400,7 @@ func GetGroupFilesByFolder(Struct interface{}, GroupId int, FolderId string) {
 		FolderId: FolderId,
 	}
 	Resp := postRequest("get_group_files_by_folder", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // CreateGroupFileFolder Endpoint create_group_file_folder
@@ -433,20 +440,20 @@ func GetGroupFileUrl(Struct interface{}, GroupId int, FileId string, BusId int) 
 		BusId:   BusId,
 	}
 	Resp := postRequest("get_group_file_url", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetStatus Endpoint get_status
 func GetStatus(Struct interface{}) {
 	Resp := getRequest("get_status")
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupAtAllRemain Endpoint get_group_at_all_remain
 func GetGroupAtAllRemain(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupAtAllRemainData{GroupId: GroupId}
 	Resp := postRequest("get_group_at_all_remain", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // HandleQuickOperation Endpoint .handle_quick_operation
@@ -472,7 +479,7 @@ func SendGroupNotice(GroupId int, Content string, Image string) {
 func GetGroupNotice(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupNoticeData{GroupId: GroupId}
 	Resp := postRequest("get_group_notice", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // ReloadEventFilter Endpoint reload_event_filter
@@ -489,14 +496,14 @@ func DownloadFile(Struct interface{}, Url string, ThreadCount int, Headers strin
 		Headers:     Headers,
 	}
 	Resp := postRequest("download_file", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetOnlineClients Endpoint get_online_clients
 func GetOnlineClients(Struct interface{}, NoCache bool) {
 	Data := gcqdata.GetOnlineClientsData{NoCache: NoCache}
 	Resp := postRequest("get_online_clients", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetGroupMsgHistory Endpoint get_group_msg_history
@@ -506,7 +513,7 @@ func GetGroupMsgHistory(Struct interface{}, MessageSeq int, GroupId int) {
 		GroupId:    GroupId,
 	}
 	Resp := postRequest("get_group_msg_history", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // SetEssenceMsg Endpoint set_essence_msg
@@ -525,21 +532,21 @@ func DeleteEssenceMsg(MessageId int) {
 func GetEssenceMsgList(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetEssenceMsgListData{GroupId: GroupId}
 	Resp := postRequest("get_essence_msg_list", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // CheckUrlSafely Endpoint check_url_safely
 func CheckUrlSafely(Struct interface{}, Url string) {
 	Data := gcqdata.CheckUrlSafelyData{Url: Url}
 	Resp := postRequest("check_url_safely", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // GetModelShow Endpoint _get_module_show
 func GetModelShow(Struct interface{}, Model string) {
 	Data := gcqdata.GetModelShowData{Model: Model}
 	Resp := postRequest("_get_module_show", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }
 
 // SetModelShow Endpoint _set_module_show
@@ -564,5 +571,5 @@ func SendPrivateForwardMsg(Struct interface{}, UserId int, Messages interface{})
 		Messages: Messages,
 	}
 	Resp := postRequest("send_private_forward_msg", Data)
-	respDecoder(Resp, Struct)
+	respDecoder(Resp)
 }

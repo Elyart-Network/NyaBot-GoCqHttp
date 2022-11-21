@@ -2,12 +2,11 @@ package Base
 
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqapi"
-	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
+	"log"
 )
 
 func test() {
 	// Test
-	Struct := gcqdata.GetLoginInfoResp{}
-	gcqapi.GetLoginInfo(Struct)
-	println(Struct.Nickname)
+	Struct := gcqapi.GetLoginInfo()
+	log.Println(Struct.Nickname)
 }

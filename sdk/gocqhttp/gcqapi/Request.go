@@ -3,13 +3,10 @@ package gcqapi
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
 	"bytes"
-	jsoniter "github.com/json-iterator/go"
 	"io"
 	"log"
 	"net/http"
 )
-
-var jsonNew = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type respStruct struct {
 	Status  string      `json:"status"`
@@ -37,7 +34,7 @@ func getRequest(Endpoint string) (Context []byte) {
 
 // PostRequest Send Post Requests to GoCqHttp
 func postRequest(Endpoint string, Params interface{}) (Context []byte) {
-	byteSlice, _ := jsonNew.MarshalIndent(Params, "", "")
+	byteSlice, _ := gcqdata.JsonLib.MarshalIndent(Params, "", "")
 	Request, err := http.Post(gcqdata.CqHttpHost+Endpoint, "application/json", bytes.NewBuffer(byteSlice))
 	if err != nil {
 		log.Println(err)
@@ -53,11 +50,15 @@ func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 }
 
 // RespDecoder Decode Json respond to Only Data
-func respDecoder(Context []byte, Struct interface{}) {
+func respDecoder(Context []byte) []byte {
 	RespStruct := respStruct{}
-	err := jsonNew.Unmarshal(Context, &RespStruct)
+	err := gcqdata.JsonLib.Unmarshal(Context, &RespStruct)
 	if err != nil {
 		log.Println(err)
 	}
-	Struct = RespStruct.Data
+	byteSlice, err := gcqdata.JsonLib.Marshal(RespStruct.Data)
+	if err != nil {
+		log.Println(err)
+	}
+	return byteSlice
 }
