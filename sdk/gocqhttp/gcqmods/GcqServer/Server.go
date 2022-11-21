@@ -4,6 +4,7 @@ import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqmods/EventFlow"
 	"github.com/gin-gonic/gin"
+	"github.com/json-iterator/go/extra"
 	"io"
 	"log"
 	"net/http"
@@ -12,6 +13,7 @@ import (
 
 func Init(handler gcqdata.CqHandler) {
 	gcqdata.Handler = handler
+	extra.RegisterFuzzyDecoders() // json-iterator
 }
 
 func SetCqHost(cqHttpHost string) {

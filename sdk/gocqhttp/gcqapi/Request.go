@@ -3,11 +3,13 @@ package gcqapi
 import (
 	"NyaBot-GoCqHttp/sdk/gocqhttp/gcqdata"
 	"bytes"
-	"encoding/json"
+	jsoniter "github.com/json-iterator/go"
 	"io"
 	"log"
 	"net/http"
 )
+
+var jsonNew = jsoniter.ConfigCompatibleWithStandardLibrary
 
 type respStruct struct {
 	Status  string      `json:"status"`
@@ -35,7 +37,7 @@ func getRequest(Endpoint string) (Context []byte) {
 
 // PostRequest Send Post Requests to GoCqHttp
 func postRequest(Endpoint string, Params interface{}) (Context []byte) {
-	byteSlice, _ := json.MarshalIndent(Params, "", "")
+	byteSlice, _ := jsonNew.MarshalIndent(Params, "", "")
 	Request, err := http.Post(gcqdata.CqHttpHost+Endpoint, "application/json", bytes.NewBuffer(byteSlice))
 	if err != nil {
 		log.Println(err)
@@ -53,7 +55,7 @@ func postRequest(Endpoint string, Params interface{}) (Context []byte) {
 // RespDecoder Decode Json respond to Only Data
 func respDecoder(Context []byte, Struct interface{}) {
 	RespStruct := respStruct{}
-	err := json.Unmarshal(Context, &RespStruct)
+	err := jsonNew.Unmarshal(Context, &RespStruct)
 	if err != nil {
 		log.Println(err)
 	}
