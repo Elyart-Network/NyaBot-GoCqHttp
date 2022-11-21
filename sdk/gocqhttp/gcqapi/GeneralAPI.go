@@ -56,30 +56,48 @@ func DeleteMsg(MessageId int) {
 }
 
 // GetMsg Endpoint get_msg
-func GetMsg(Struct interface{}, MessageId int) {
+func GetMsg(MessageId int) gcqdata.GetMsgResp {
 	Data := gcqdata.GetMsgData{
 		MessageId: MessageId,
 	}
-	Resp := postRequest("get_msg", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_msg", Data)
+	Struct := gcqdata.GetMsgResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetForwardMsg Endpoint get_forward_msg
-func GetForwardMsg(Struct interface{}, MessageId string) {
+func GetForwardMsg(MessageId string) gcqdata.GetForwardMsgResp {
 	Data := gcqdata.GetForwardMsgData{
 		MessageId: MessageId,
 	}
-	Resp := postRequest("get_forward_msg", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_forward_msg", Data)
+	Struct := gcqdata.GetForwardMsgResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetImage Endpoint get_image
-func GetImage(Struct interface{}, File string) {
+func GetImage(File string) gcqdata.GetImageResp {
 	Data := gcqdata.GetImageData{
 		File: File,
 	}
-	Resp := postRequest("get_image", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_image", Data)
+	Struct := gcqdata.GetImageResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // MarkMsgAsRead Endpoint mark_msg_as_read
@@ -207,8 +225,8 @@ func SetGroupAddRequest(Flag string, SubType string, Approve bool, Reason string
 
 // GetLoginInfo Endpoint get_login_info
 func GetLoginInfo() gcqdata.GetLoginInfoResp {
-	Struct := gcqdata.GetLoginInfoResp{}
 	Request := getRequest("get_login_info")
+	Struct := gcqdata.GetLoginInfoResp{}
 	Receive := respDecoder(Request)
 	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
 	if err != nil {
@@ -218,9 +236,15 @@ func GetLoginInfo() gcqdata.GetLoginInfoResp {
 }
 
 // QidianGetAccountInfo Endpoint qidian_get_account_info
-func QidianGetAccountInfo(Struct interface{}) {
-	Resp := getRequest("qidian_get_account_info")
-	respDecoder(Resp)
+func QidianGetAccountInfo() gcqdata.QidianGetAccountInfoResp {
+	Request := getRequest("qidian_get_account_info")
+	Struct := gcqdata.QidianGetAccountInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // SetQQProfile Endpoint set_qq_profile
@@ -236,25 +260,43 @@ func SetQQProfile(Nickname string, Company string, Email string, College string,
 }
 
 // GetStrangerInfo Endpoint get_stranger_info
-func GetStrangerInfo(Struct interface{}, UserId int, NoCache bool) {
+func GetStrangerInfo(UserId int, NoCache bool) gcqdata.GetStrangerInfoResp {
 	Data := gcqdata.GetStrangerInfoData{
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
-	Resp := postRequest("get_stranger_info", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_stranger_info", Data)
+	Struct := gcqdata.GetStrangerInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetFriendList Endpoint get_friend_list
-func GetFriendList(Struct interface{}) {
-	Resp := getRequest("get_friend_list")
-	respDecoder(Resp)
+func GetFriendList() gcqdata.GetFriendListResp {
+	Request := getRequest("get_friend_list")
+	Struct := gcqdata.GetFriendListResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetUnidirectionalFriendList Endpoint get_unidirectional_friend_list
-func GetUnidirectionalFriendList(Struct interface{}) {
-	Resp := getRequest("get_unidirectional_friend_list")
-	respDecoder(Resp)
+func GetUnidirectionalFriendList() gcqdata.GetUnidirectionalFriendListResp {
+	Request := getRequest("get_unidirectional_friend_list")
+	Struct := gcqdata.GetUnidirectionalFriendListResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // DeleteFriend Endpoint delete_friend
@@ -264,62 +306,104 @@ func DeleteFriend(FriendId int) {
 }
 
 // GetGroupInfo Endpoint get_group_info
-func GetGroupInfo(Struct interface{}, GroupId int, NoCache bool) {
+func GetGroupInfo(GroupId int, NoCache bool) gcqdata.GetGroupInfoResp {
 	Data := gcqdata.GetGroupInfoData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
-	Resp := postRequest("get_group_info", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_info", Data)
+	Struct := gcqdata.GetGroupInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupList Endpoint get_group_list
-func GetGroupList(Struct interface{}) {
-	Resp := getRequest("get_group_list")
-	respDecoder(Resp)
+func GetGroupList() gcqdata.GetGroupListResp {
+	Request := getRequest("get_group_list")
+	Struct := gcqdata.GetGroupListResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupMemberInfo Endpoint get_group_member_info
-func GetGroupMemberInfo(Struct interface{}, GroupId int, UserId int, NoCache bool) {
+func GetGroupMemberInfo(GroupId int, UserId int, NoCache bool) gcqdata.GetGroupMemberInfoResp {
 	Data := gcqdata.GetGroupMemberInfoData{
 		GroupId: GroupId,
 		UserId:  UserId,
 		NoCache: NoCache,
 	}
-	Resp := postRequest("get_group_member_info", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_member_info", Data)
+	Struct := gcqdata.GetGroupMemberInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupMemberList Endpoint get_group_member_list
-func GetGroupMemberList(Struct interface{}, GroupId int, NoCache bool) {
+func GetGroupMemberList(GroupId int, NoCache bool) gcqdata.GetGroupMemberListResp {
 	Data := gcqdata.GetGroupMemberListData{
 		GroupId: GroupId,
 		NoCache: NoCache,
 	}
-	Resp := postRequest("get_group_member_list", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_member_list", Data)
+	Struct := gcqdata.GetGroupMemberListResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupHonorInfo Endpoint get_group_honor_info
-func GetGroupHonorInfo(Struct interface{}, GroupId int, Type string) {
+func GetGroupHonorInfo(GroupId int, Type string) gcqdata.GetGroupHonorInfoResp {
 	Data := gcqdata.GetGroupHonorInfoData{
 		GroupId: GroupId,
 		Type:    Type,
 	}
-	Resp := postRequest("get_group_honor_info", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_honor_info", Data)
+	Struct := gcqdata.GetGroupHonorInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // CanSendImage Endpoint can_send_image
-func CanSendImage(Struct interface{}) {
-	Resp := getRequest("can_send_image")
-	respDecoder(Resp)
+func CanSendImage() gcqdata.CanSendImageResp {
+	Request := getRequest("can_send_image")
+	Struct := gcqdata.CanSendImageResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetVersionInfo Endpoint get_version_info
-func GetVersionInfo(Struct interface{}) {
-	Resp := getRequest("get_version_info")
-	respDecoder(Resp)
+func GetVersionInfo() gcqdata.GetVersionInfoResp {
+	Request := getRequest("get_version_info")
+	Struct := gcqdata.GetVersionInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // SetRestart Endpoint set_restart
@@ -339,23 +423,41 @@ func SetGroupPortrait(GroupId int, File string, Cache int) {
 }
 
 // GetWordSlices Endpoint .get_word_slices
-func GetWordSlices(Struct interface{}, Content string) {
+func GetWordSlices(Content string) gcqdata.GetWordSlicesResp {
 	Data := gcqdata.GetWordSlicesData{Content: Content}
-	Resp := postRequest("get_word_slices", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_word_slices", Data)
+	Struct := gcqdata.GetWordSlicesResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // OCRImage Endpoint ocr_image
-func OCRImage(Struct interface{}, Image string) {
+func OCRImage(Image string) gcqdata.OCRImageResp {
 	Data := gcqdata.OCRImageData{Image: Image}
-	Resp := postRequest("ocr_image", Data)
-	respDecoder(Resp)
+	Request := postRequest("ocr_image", Data)
+	Struct := gcqdata.OCRImageResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupSystemMsg Endpoint get_group_system_msg
-func GetGroupSystemMsg(Struct interface{}) {
-	Resp := getRequest("get_group_system_msg")
-	respDecoder(Resp)
+func GetGroupSystemMsg() gcqdata.GetGroupSystemMsgResp {
+	Request := getRequest("get_group_system_msg")
+	Struct := gcqdata.GetGroupSystemMsgResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // UploadPrivateFile Endpoint upload_private_file
@@ -380,27 +482,45 @@ func UploadGroupFile(GroupId int, File string, Name string, Folder string) {
 }
 
 // GetGroupFileSystemInfo Endpoint get_group_file_system_info
-func GetGroupFileSystemInfo(Struct interface{}, GroupId int) {
+func GetGroupFileSystemInfo(GroupId int) gcqdata.GetGroupFileSystemInfoResp {
 	Data := gcqdata.GetGroupFileSystemInfoData{GroupId: GroupId}
-	Resp := postRequest("get_group_file_system_info", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_file_system_info", Data)
+	Struct := gcqdata.GetGroupFileSystemInfoResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupRootFiles Endpoint get_group_root_files
-func GetGroupRootFiles(Struct interface{}, GroupId int) {
+func GetGroupRootFiles(GroupId int) gcqdata.GetGroupRootFilesResp {
 	Data := gcqdata.GetGroupRootFilesData{GroupId: GroupId}
-	Resp := postRequest("get_group_root_files", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_root_files", Data)
+	Struct := gcqdata.GetGroupRootFilesResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupFilesByFolder Endpoint get_group_files_by_folder
-func GetGroupFilesByFolder(Struct interface{}, GroupId int, FolderId string) {
+func GetGroupFilesByFolder(GroupId int, FolderId string) gcqdata.GetGroupFilesByFolderResp {
 	Data := gcqdata.GetGroupFilesByFolderData{
 		GroupId:  GroupId,
 		FolderId: FolderId,
 	}
-	Resp := postRequest("get_group_files_by_folder", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_files_by_folder", Data)
+	Struct := gcqdata.GetGroupFilesByFolderResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // CreateGroupFileFolder Endpoint create_group_file_folder
@@ -433,27 +553,45 @@ func DeleteGroupFile(GroupId int, FileId string, BusId int) {
 }
 
 // GetGroupFileUrl Endpoint get_group_file_url
-func GetGroupFileUrl(Struct interface{}, GroupId int, FileId string, BusId int) {
+func GetGroupFileUrl(GroupId int, FileId string, BusId int) gcqdata.GetGroupFileUrlResp {
 	Data := gcqdata.GetGroupFileUrlData{
 		GroupId: GroupId,
 		FileId:  FileId,
 		BusId:   BusId,
 	}
-	Resp := postRequest("get_group_file_url", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_file_url", Data)
+	Struct := gcqdata.GetGroupFileUrlResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetStatus Endpoint get_status
-func GetStatus(Struct interface{}) {
-	Resp := getRequest("get_status")
-	respDecoder(Resp)
+func GetStatus() gcqdata.GetStatusResp {
+	Request := getRequest("get_status")
+	Struct := gcqdata.GetStatusResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupAtAllRemain Endpoint get_group_at_all_remain
-func GetGroupAtAllRemain(Struct interface{}, GroupId int) {
+func GetGroupAtAllRemain(GroupId int) gcqdata.GetGroupAtAllRemainResp {
 	Data := gcqdata.GetGroupAtAllRemainData{GroupId: GroupId}
-	Resp := postRequest("get_group_at_all_remain", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_at_all_remain", Data)
+	Struct := gcqdata.GetGroupAtAllRemainResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // HandleQuickOperation Endpoint .handle_quick_operation
@@ -476,10 +614,16 @@ func SendGroupNotice(GroupId int, Content string, Image string) {
 }
 
 // GetGroupNotice Endpoint _get_group_notice
-func GetGroupNotice(Struct interface{}, GroupId int) {
+func GetGroupNotice(GroupId int) gcqdata.GetGroupNoticeResp {
 	Data := gcqdata.GetGroupNoticeData{GroupId: GroupId}
-	Resp := postRequest("get_group_notice", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_notice", Data)
+	Struct := gcqdata.GetGroupNoticeResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // ReloadEventFilter Endpoint reload_event_filter
@@ -489,31 +633,49 @@ func ReloadEventFilter(file string) {
 }
 
 // DownloadFile Endpoint download_file
-func DownloadFile(Struct interface{}, Url string, ThreadCount int, Headers string) {
+func DownloadFile(Url string, ThreadCount int, Headers string) gcqdata.DownloadFileResp {
 	Data := gcqdata.DownloadFileData{
 		Url:         Url,
 		ThreadCount: ThreadCount,
 		Headers:     Headers,
 	}
-	Resp := postRequest("download_file", Data)
-	respDecoder(Resp)
+	Request := postRequest("download_file", Data)
+	Struct := gcqdata.DownloadFileResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetOnlineClients Endpoint get_online_clients
-func GetOnlineClients(Struct interface{}, NoCache bool) {
+func GetOnlineClients(NoCache bool) gcqdata.GetOnlineClientsResp {
 	Data := gcqdata.GetOnlineClientsData{NoCache: NoCache}
-	Resp := postRequest("get_online_clients", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_online_clients", Data)
+	Struct := gcqdata.GetOnlineClientsResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetGroupMsgHistory Endpoint get_group_msg_history
-func GetGroupMsgHistory(Struct interface{}, MessageSeq int, GroupId int) {
+func GetGroupMsgHistory(MessageSeq int, GroupId int) gcqdata.GetGroupMsgHistoryResp {
 	Data := gcqdata.GetGroupMsgHistoryData{
 		MessageSeq: MessageSeq,
 		GroupId:    GroupId,
 	}
-	Resp := postRequest("get_group_msg_history", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_group_msg_history", Data)
+	Struct := gcqdata.GetGroupMsgHistoryResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // SetEssenceMsg Endpoint set_essence_msg
@@ -529,24 +691,42 @@ func DeleteEssenceMsg(MessageId int) {
 }
 
 // GetEssenceMsgList Endpoint get_essence_msg_list
-func GetEssenceMsgList(Struct interface{}, GroupId int) {
+func GetEssenceMsgList(GroupId int) gcqdata.GetEssenceMsgListResp {
 	Data := gcqdata.GetEssenceMsgListData{GroupId: GroupId}
-	Resp := postRequest("get_essence_msg_list", Data)
-	respDecoder(Resp)
+	Request := postRequest("get_essence_msg_list", Data)
+	Struct := gcqdata.GetEssenceMsgListResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // CheckUrlSafely Endpoint check_url_safely
-func CheckUrlSafely(Struct interface{}, Url string) {
+func CheckUrlSafely(Url string) gcqdata.CheckUrlSafelyResp {
 	Data := gcqdata.CheckUrlSafelyData{Url: Url}
-	Resp := postRequest("check_url_safely", Data)
-	respDecoder(Resp)
+	Request := postRequest("check_url_safely", Data)
+	Struct := gcqdata.CheckUrlSafelyResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // GetModelShow Endpoint _get_module_show
-func GetModelShow(Struct interface{}, Model string) {
+func GetModelShow(Model string) gcqdata.GetModelShowResp {
 	Data := gcqdata.GetModelShowData{Model: Model}
-	Resp := postRequest("_get_module_show", Data)
-	respDecoder(Resp)
+	Request := postRequest("_get_module_show", Data)
+	Struct := gcqdata.GetModelShowResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
 
 // SetModelShow Endpoint _set_module_show
@@ -565,11 +745,17 @@ func DeleteUnidirectionalFriend(UserId int) {
 }
 
 // SendPrivateForwardMsg Endpoint send_private_forward_msg
-func SendPrivateForwardMsg(Struct interface{}, UserId int, Messages interface{}) {
+func SendPrivateForwardMsg(UserId int, Messages interface{}) gcqdata.SendPrivateForwardMsgResp {
 	Data := gcqdata.SendPrivateForwardMsgData{
 		UserId:   UserId,
 		Messages: Messages,
 	}
-	Resp := postRequest("send_private_forward_msg", Data)
-	respDecoder(Resp)
+	Request := postRequest("send_private_forward_msg", Data)
+	Struct := gcqdata.SendPrivateForwardMsgResp{}
+	Receive := respDecoder(Request)
+	err := gcqdata.JsonLib.Unmarshal(Receive, &Struct)
+	if err != nil {
+		log.Println(err)
+	}
+	return Struct
 }
