@@ -379,19 +379,21 @@ func GetGroupFileSystemInfo(Struct interface{}, GroupId int) {
 	respDecoder(Resp, Struct)
 }
 
-// GetGroupRootFiles Endpoint get_group_root_files TODO
-func GetGroupRootFiles(GroupId int) {
+// GetGroupRootFiles Endpoint get_group_root_files
+func GetGroupRootFiles(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupRootFilesData{GroupId: GroupId}
-	postRequest("get_group_root_files", Data)
+	Resp := postRequest("get_group_root_files", Data)
+	respDecoder(Resp, Struct)
 }
 
-// GetGroupFilesByFolder Endpoint get_group_files_by_folder TODO
-func GetGroupFilesByFolder(GroupId int, FolderId string) {
+// GetGroupFilesByFolder Endpoint get_group_files_by_folder
+func GetGroupFilesByFolder(Struct interface{}, GroupId int, FolderId string) {
 	Data := gcqdata.GetGroupFilesByFolderData{
 		GroupId:  GroupId,
 		FolderId: FolderId,
 	}
-	postRequest("get_group_files_by_folder", Data)
+	Resp := postRequest("get_group_files_by_folder", Data)
+	respDecoder(Resp, Struct)
 }
 
 // CreateGroupFileFolder Endpoint create_group_file_folder
@@ -423,25 +425,28 @@ func DeleteGroupFile(GroupId int, FileId string, BusId int) {
 	postRequest("delete_group_file", Data)
 }
 
-// GetGroupFileUrl Endpoint get_group_file_url TODO
-func GetGroupFileUrl(GroupId int, FileId string, BusId int) {
+// GetGroupFileUrl Endpoint get_group_file_url
+func GetGroupFileUrl(Struct interface{}, GroupId int, FileId string, BusId int) {
 	Data := gcqdata.GetGroupFileUrlData{
 		GroupId: GroupId,
 		FileId:  FileId,
 		BusId:   BusId,
 	}
-	postRequest("get_group_file_url", Data)
+	Resp := postRequest("get_group_file_url", Data)
+	respDecoder(Resp, Struct)
 }
 
-// GetStatus Endpoint get_status TODO
-func GetStatus() {
-	postRequest("get_status", nil)
+// GetStatus Endpoint get_status
+func GetStatus(Struct interface{}) {
+	Resp := getRequest("get_status")
+	respDecoder(Resp, Struct)
 }
 
-// GetGroupAtAllRemain Endpoint get_group_at_all_remain TODO
-func GetGroupAtAllRemain(GroupId int) {
+// GetGroupAtAllRemain Endpoint get_group_at_all_remain
+func GetGroupAtAllRemain(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupAtAllRemainData{GroupId: GroupId}
-	postRequest("get_group_at_all_remain", Data)
+	Resp := postRequest("get_group_at_all_remain", Data)
+	respDecoder(Resp, Struct)
 }
 
 // HandleQuickOperation Endpoint .handle_quick_operation
@@ -463,10 +468,11 @@ func SendGroupNotice(GroupId int, Content string, Image string) {
 	postRequest("send_group_notice", Data)
 }
 
-// GetGroupNotice Endpoint _get_group_notice TODO
-func GetGroupNotice(GroupId int) {
+// GetGroupNotice Endpoint _get_group_notice
+func GetGroupNotice(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetGroupNoticeData{GroupId: GroupId}
-	postRequest("get_group_notice", Data)
+	Resp := postRequest("get_group_notice", Data)
+	respDecoder(Resp, Struct)
 }
 
 // ReloadEventFilter Endpoint reload_event_filter
@@ -475,29 +481,32 @@ func ReloadEventFilter(file string) {
 	postRequest("reload_event_filter", Data)
 }
 
-// DownloadFile Endpoint download_file TODO
-func DownloadFile(Url string, ThreadCount int, Headers string) {
+// DownloadFile Endpoint download_file
+func DownloadFile(Struct interface{}, Url string, ThreadCount int, Headers string) {
 	Data := gcqdata.DownloadFileData{
 		Url:         Url,
 		ThreadCount: ThreadCount,
 		Headers:     Headers,
 	}
-	postRequest("download_file", Data)
+	Resp := postRequest("download_file", Data)
+	respDecoder(Resp, Struct)
 }
 
-// GetOnlineClients Endpoint get_online_clients TODO
-func GetOnlineClients(NoCache bool) {
+// GetOnlineClients Endpoint get_online_clients
+func GetOnlineClients(Struct interface{}, NoCache bool) {
 	Data := gcqdata.GetOnlineClientsData{NoCache: NoCache}
-	postRequest("get_online_clients", Data)
+	Resp := postRequest("get_online_clients", Data)
+	respDecoder(Resp, Struct)
 }
 
-// GetGroupMsgHistory Endpoint get_group_msg_history TODO
-func GetGroupMsgHistory(MessageSeq int, GroupId int) {
+// GetGroupMsgHistory Endpoint get_group_msg_history
+func GetGroupMsgHistory(Struct interface{}, MessageSeq int, GroupId int) {
 	Data := gcqdata.GetGroupMsgHistoryData{
 		MessageSeq: MessageSeq,
 		GroupId:    GroupId,
 	}
-	postRequest("get_group_msg_history", Data)
+	Resp := postRequest("get_group_msg_history", Data)
+	respDecoder(Resp, Struct)
 }
 
 // SetEssenceMsg Endpoint set_essence_msg
@@ -512,22 +521,25 @@ func DeleteEssenceMsg(MessageId int) {
 	postRequest("delete_essence_msg", Data)
 }
 
-// GetEssenceMsgList Endpoint get_essence_msg_list TODO
-func GetEssenceMsgList(GroupId int) {
+// GetEssenceMsgList Endpoint get_essence_msg_list
+func GetEssenceMsgList(Struct interface{}, GroupId int) {
 	Data := gcqdata.GetEssenceMsgListData{GroupId: GroupId}
-	postRequest("get_essence_msg_list", Data)
+	Resp := postRequest("get_essence_msg_list", Data)
+	respDecoder(Resp, Struct)
 }
 
-// CheckUrlSafely Endpoint check_url_safely TODO
-func CheckUrlSafely(Url string) {
+// CheckUrlSafely Endpoint check_url_safely
+func CheckUrlSafely(Struct interface{}, Url string) {
 	Data := gcqdata.CheckUrlSafelyData{Url: Url}
-	postRequest("check_url_safely", Data)
+	Resp := postRequest("check_url_safely", Data)
+	respDecoder(Resp, Struct)
 }
 
-// GetModelShow Endpoint _get_module_show TODO
-func GetModelShow(Model string) {
+// GetModelShow Endpoint _get_module_show
+func GetModelShow(Struct interface{}, Model string) {
 	Data := gcqdata.GetModelShowData{Model: Model}
-	postRequest("_get_module_show", Data)
+	Resp := postRequest("_get_module_show", Data)
+	respDecoder(Resp, Struct)
 }
 
 // SetModelShow Endpoint _set_module_show
@@ -545,11 +557,12 @@ func DeleteUnidirectionalFriend(UserId int) {
 	postRequest("delete_unidirectional_friend", Data)
 }
 
-// SendPrivateForwardMsg Endpoint send_private_forward_msg TODO
-func SendPrivateForwardMsg(UserId int, Messages interface{}) {
+// SendPrivateForwardMsg Endpoint send_private_forward_msg
+func SendPrivateForwardMsg(Struct interface{}, UserId int, Messages interface{}) {
 	Data := gcqdata.SendPrivateForwardMsgData{
 		UserId:   UserId,
 		Messages: Messages,
 	}
-	postRequest("send_private_forward_msg", Data)
+	Resp := postRequest("send_private_forward_msg", Data)
+	respDecoder(Resp, Struct)
 }
