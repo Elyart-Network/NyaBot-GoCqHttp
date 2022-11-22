@@ -118,6 +118,43 @@ type GetTopicChannelFeedsData struct {
 	ChannelID string `json:"channel_id"`
 }
 
+// GetTopicChannelFeedsResp Endpoint get_topic_channel_feeds
+type GetTopicChannelFeedsResp struct {
+	Id             string        `json:"id"`
+	ChannelId      string        `json:"channel_id"`
+	GuildId        string        `json:"guild_id"`
+	CreateTime     int           `json:"create_time"`
+	Title          string        `json:"title"`
+	SubTitle       string        `json:"sub_title"`
+	PosterInfo     posterInfo    `json:"poster_info"`
+	Resource       resourceInfo  `json:"resource"`
+	ResourceImage  []feedMedia   `json:"resource.image"`
+	ResourceVideos []feedMedia   `json:"resource.videos"`
+	Contents       []feedContent `json:"contents"`
+}
+
+type resourceInfo struct {
+}
+
+type posterInfo struct {
+	TinyId   string `json:"tiny_id"`
+	Nickname string `json:"nickname"`
+	IconUrl  string `json:"icon_url"`
+}
+
+type feedMedia struct {
+	FileId    string `json:"file_id"`
+	PatternId string `json:"pattern_id"`
+	Url       string `json:"url"`
+	Height    int    `json:"height"`
+	Width     int    `json:"width"`
+}
+
+type feedContent struct {
+	Type string      `json:"type"`
+	Data interface{} `json:"data"`
+}
+
 // DeleteGuildRoleData Endpoint delete_guild_role
 type DeleteGuildRoleData struct {
 	GuildID string `json:"guild_id"`
